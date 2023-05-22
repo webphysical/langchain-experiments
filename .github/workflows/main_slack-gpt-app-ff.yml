@@ -7,7 +7,11 @@ name: Build and deploy Python app to Azure Web App - slack-gpt-app-ff
 on:
   push:
     branches:
-      - main
+      - deployment
+    paths:
+        - 'slack/**'
+        - 'requirements.txt'
+        - 'startup.txt'
   workflow_dispatch:
 
 jobs:

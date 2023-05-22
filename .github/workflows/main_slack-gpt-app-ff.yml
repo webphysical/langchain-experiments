@@ -37,11 +37,10 @@ jobs:
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
       
       - name: Upload artifact for deployment jobs
-        uses: actions/upload-artifact@v2
-        with:
-          name: python-app
-          path: |
-            . 
+  uses: actions/upload-artifact@v2
+  with:
+    name: python-app
+    path: .
             !venv/
 
   deploy:
@@ -70,3 +69,12 @@ jobs:
           app-name: 'slack-gpt-app-ff'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_6FB4997DD1BD40229A6F26E8613E73F8 }}
+
+
+
+
+- name: Upload artifact for deployment jobs
+  uses: actions/upload-artifact@v2
+  with:
+    name: python-app
+    path: .

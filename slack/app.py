@@ -6,7 +6,7 @@ from slack_sdk.signature import SignatureVerifier
 from slack_bolt import App
 from dotenv import find_dotenv, load_dotenv
 from flask import Flask, request
-from functions import draft_email, sentiment_analysis
+from functions import draft_email, analyze_sentiment_pt
 
 from flask import Flask, request, abort
 
@@ -145,7 +145,7 @@ def handle_mentions(body, say):
     say("Obrigado, Já estou trabalhando no texto!")
     response = draft_email(text)
     
-    sentiment = sentiment_analysis(text)  # adicionado análise de sentimentos
+    sentiment = analyze_sentiment_pt(text)  # adicionado análise de sentimentos
     if sentiment < 0:
         sentiment_message = "Alerta! O sentimento desta mensagem parece ser negativo."
     else:

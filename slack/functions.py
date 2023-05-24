@@ -2,41 +2,51 @@ from langchain.chat_models import ChatOpenAI
 from langchain.chains import LLMChain
 from dotenv import find_dotenv, load_dotenv
 from langchain.prompts.chat import (
-    ChatPromptTemplate,
-    SystemMessagePromptTemplate,
-    HumanMessagePromptTemplate,
+   ChatPromptTemplate,
+   SystemMessagePromptTemplate,
+   HumanMessagePromptTemplate,
 )
+
 
 load_dotenv(find_dotenv())
 
 
+
+
 def draft_email(user_input, name="Fabio"):
-    chat = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=1)
+   chat = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=1)
 
-    template = """
-    
-     Você é um assistente prestativo que elabora um rascunho de resposta de e-mail com base em um novo e-mail. Você também pode responder mensagens de Whatsapp e Facebook. 
 
-     Seu objetivo é ajudar o usuário a criar rapidamente uma resposta de e-mail perfeita.
+   template = """
+  
+   You are a helpful assistant that drafts an email reply based on a new email.
+  
+   Your goal is to help the user quickly create a perfect email reply.
+  
+   Keep your reply short and to the point and mimic the style of the email so you reply in a similar manner to match the tone.
+  
+   Start your reply by saying: "Hi {name}, here's a draft for your reply:". And then proceed with the reply on a new line.
+  
+   Make sure to sign of with {signature}.
+  
+   """
 
-     Mantenha sua resposta curta e direta e imite o estilo do e-mail, respondendo de maneira semelhante para combinar com o tom. Você sempre responderá na lingua Portugês do Brasil.
 
-     Comece sua resposta dizendo: "Olá {name}, aqui está um rascunho para sua resposta:". E então continue com a resposta em uma nova linha.
+   signature = f"Kind regards, \n\{Fabio}"
+   system_message_prompt = SystemMessagePromptTemplate.from_template(template)
 
-     Certifique-se de terminar com {signature}.
-    
-     """
-    signature = f"Atenciosamente, \nFabio"
-    system_message_prompt = SystemMessagePromptTemplate.from_template(template)
 
-    human_template = "Aqui está o e-mail para responder e considere quaisquer outros comentários do usuário para a resposta também: {user_input}"
-    human_message_prompt = HumanMessagePromptTemplate.from_template(human_template)
+   human_template = "Here's the email to reply to and consider any other comments from the user for reply as well: {user_input}"
+   human_message_prompt = HumanMessagePromptTemplate.from_template(human_template)
 
-    chat_prompt = ChatPromptTemplate.from_messages(
-        [system_message_prompt, human_message_prompt]
-    )
 
-    chain = LLMChain(llm=chat, prompt=chat_prompt)
-    response = chain.run(user_input=user_input, signature=signature, name=name)
+   chat_prompt = ChatPromptTemplate.from_messages(
+       [system_message_prompt, human_message_prompt]
+   )
 
-    return response
+
+   chain = LLMChain(llm=chat, prompt=chat_prompt)
+   response = chain.run(user_input=user_input, signature=signature, name=name)
+
+
+   return response

@@ -26,8 +26,7 @@ def draft_email(user_input, name="Fabio"):
      Certifique-se de terminar com {signature}.
     
      """
-
-    signature = f"Atenciosamente, \n\{Fabio}"
+    signature = f"Atenciosamente, \nFabio"
     system_message_prompt = SystemMessagePromptTemplate.from_template(template)
 
     human_template = "Aqui está o e-mail para responder e considere quaisquer outros comentários do usuário para a resposta também: {user_input}"

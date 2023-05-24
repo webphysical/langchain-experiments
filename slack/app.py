@@ -7,6 +7,7 @@ from slack_bolt import App
 from dotenv import find_dotenv, load_dotenv
 from flask import Flask, request
 from functions import draft_email, analyze_sentiment_pt
+from functions import draft_email, analyze_sentiment_pt
 
 from flask import Flask, request, abort
 
@@ -16,7 +17,7 @@ import time
 import sys
 
 
-# Load environment variables from .env file
+# Load environment variables from .env file.
 load_dotenv(find_dotenv())
 
 # Set Slack API credentials

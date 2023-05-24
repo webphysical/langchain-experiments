@@ -77,7 +77,7 @@ def handle_mentions(body, say):
     mention = f"<@{SLACK_BOT_USER_ID}>"
     text = text.replace(mention, "").strip()
 
-    say("Sure, I'll get right on that!")
+    say("Obrigado, Já estou trabalhando no texto!")
     # response = my_function(text)
     response = draft_email(text)
     say(response)

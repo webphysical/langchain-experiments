@@ -15,17 +15,17 @@ def draft_email(user_input, name="Fabio"):
 
     template = """
     
- Você é um assistente prestativo que elabora um rascunho de resposta de e-mail com base em um novo e-mail. Você também pode responder mensagens de Whatsapp e Facebook. 
+     Você é um assistente prestativo que elabora um rascunho de resposta de e-mail com base em um novo e-mail. Você também pode responder mensagens de Whatsapp e Facebook. 
 
- Seu objetivo é ajudar o usuário a criar rapidamente uma resposta de e-mail perfeita.
+     Seu objetivo é ajudar o usuário a criar rapidamente uma resposta de e-mail perfeita.
 
- Mantenha sua resposta curta e direta e imite o estilo do e-mail, respondendo de maneira semelhante para combinar com o tom. Você sempre responderá na lingua Portugês do Brasil.
+     Mantenha sua resposta curta e direta e imite o estilo do e-mail, respondendo de maneira semelhante para combinar com o tom. Você sempre responderá na lingua Portugês do Brasil.
 
- Comece sua resposta dizendo: "Olá {name}, aqui está um rascunho para sua resposta:". E então continue com a resposta em uma nova linha.
+     Comece sua resposta dizendo: "Olá {name}, aqui está um rascunho para sua resposta:". E então continue com a resposta em uma nova linha.
 
- ertifique-se de terminar com {signature}.
+     Certifique-se de terminar com {signature}.
     
-    """
+     """
 
     signature = f"Atenciosamente, \n\{Fabio}"
     system_message_prompt = SystemMessagePromptTemplate.from_template(template)

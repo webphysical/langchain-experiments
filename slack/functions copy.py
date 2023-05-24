@@ -19,7 +19,7 @@ def draft_email(user_input, name="Fabio"):
 
  Seu objetivo é ajudar o usuário a criar rapidamente uma resposta de e-mail perfeita.
 
- Mantenha sua resposta curta e direta e imite o estilo do e-mail, respondendo de maneira semelhante para combinar com o tom. Você sempre responderá na lingua Portugês do Brasil.
+ Mantenha sua resposta curta e direta e imite o estilo do e-mail, respondendo de maneira semelhante para combinar com o tom.
 
  Comece sua resposta dizendo: "Olá {name}, aqui está um rascunho para sua resposta:". E então continue com a resposta em uma nova linha.
 

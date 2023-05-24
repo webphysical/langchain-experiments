@@ -6,9 +6,10 @@ from slack_sdk.signature import SignatureVerifier
 from slack_bolt import App
 from dotenv import find_dotenv, load_dotenv
 from flask import Flask, request
-from functions import draft_email
+from functions import draft_email, sentiment_analysis
+
 from flask import Flask, request, abort
-from functions import draft_email
+
 import logging
 from functools import wraps
 import time
@@ -30,6 +31,7 @@ app = App(token=SLACK_BOT_TOKEN)
 # Flask is a web application framework written in Python
 flask_app = Flask(__name__)
 handler = SlackRequestHandler(app)
+
 
 
 def get_bot_user_id():
@@ -123,6 +125,34 @@ def verify_slack_request():
         timestamp=timestamp,
         signature=signature,
     )
+
+    
+@app.event("app_mention")
+def handle_mentions(body, say):
+    """
+    Event listener for mentions in Slack.
+    When the bot is mentioned, this function processes the text and sends a response.
+
+    Args:
+        body (dict): The event data received from Slack.
+        say (callable): A function for sending a response to the channel.
+    """
+    text = body["event"]["text"]
+
+    mention = f"<@{SLACK_BOT_USER_ID}>"
+    text = text.replace(mention, "").strip()
+
+    say("Obrigado, Já estou trabalhando no texto!")
+    response = draft_email(text)
+    
+    sentiment = sentiment_analysis(text)  # adicionado análise de sentimentos
+    if sentiment < 0:
+        sentiment_message = "Alerta! O sentimento desta mensagem parece ser negativo."
+    else:
+        sentiment_message = "O sentimento desta mensagem parece ser positivo."
+    
+    # Envia a resposta e a análise de sentimentos
+    say(response + "\n\n" + sentiment_message)
 
 
 # Run the Flask app

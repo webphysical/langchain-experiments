@@ -56,7 +56,7 @@ def draft_email(user_input, name="Fabio"):
     
     """
 
-    signature = f"Atenciosamente, \n\{Fabio}"
+    signature = f"Atenciosamente, \n\{name}"
     system_message_prompt = SystemMessagePromptTemplate.from_template(template)
 
     human_template = "Aqui está o e-mail para responder e considere quaisquer outros comentários do usuário para a resposta também: {user_input}"
@@ -70,3 +70,10 @@ def draft_email(user_input, name="Fabio"):
     response = chain.run(user_input=user_input, signature=signature, name=name)
 
     return response
+
+
+
+
+#git add .
+#git commit -m "mensagem_do_commit"
+#git push

@@ -10,4 +10,5 @@ faiss-cpu
 wikipedia
 slack-sdk 
 slack-bolt
-flask 
+flask
+textblob

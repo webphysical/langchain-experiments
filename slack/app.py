@@ -1,6 +1,3 @@
-App.py
-
-
 import os
 from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
@@ -18,8 +15,11 @@ import time
 import sys
 
 
+
+
 # Load environment variables from .env file
 load_dotenv(find_dotenv())
+
 
 # Set Slack API credentials
 SLACK_BOT_TOKEN = os.environ["SLACK_BOT_TOKEN"]
